@@ -1,0 +1,18 @@
+{% load static wagtailcore_tags %}
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title|default:'Buscar' }}{% endif %}{% endblock %} · Daniel García · EA1RFI</title>
+<meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% elif page.introduction %}{{ page.introduction }}{% else %}El cuaderno personal de Daniel García: radioafición, historia y patrimonio.{% endif %}">
+<link rel="stylesheet" href="{% static 'css/site.css' %}">
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="header wrap">
+<a class="brand" href="{% if site_root %}{% pageurl site_root %}{% else %}/{% endif %}"><span class="brand-mark">DG<span>↗</span></span><span>Daniel García<small>EA1RFI · CUADERNO PERSONAL</small></span></a>
+<nav aria-label="Navegación principal">{% for item in navigation %}<a href="{% pageurl item %}" {% if page.url_path == item.url_path %}aria-current="page"{% endif %}>{{ item.title }}</a>{% endfor %}<a class="search-link" href="{% url 'search' %}">Buscar <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main id="contenido">{% block content %}{% endblock %}</main>
+<footer class="footer wrap"><div><strong>Daniel García · EA1RFI</strong><p>Radioafición, historia y curiosidad.</p></div><span>Un cuaderno abierto, desde Galicia.<br>© {% now 'Y' %}</span></footer>
+</body></html>

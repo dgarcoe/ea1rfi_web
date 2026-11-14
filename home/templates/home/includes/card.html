@@ -1,0 +1,2 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<article class="article-card"><a href="{% pageurl article %}">{% if article.cover %}{% image article.cover fill-650x420 %}{% else %}<div class="card-placeholder" aria-hidden="true">{{ article.get_parent.title }}</div>{% endif %}<div class="card-body"><p class="eyebrow">{{ article.get_parent.title }} · {{ article.date|date:'d M Y' }}</p><h3>{{ article.title }}</h3><p>{{ article.introduction }}</p><span class="text-link">Leer artículo ↗</span></div></a></article>
